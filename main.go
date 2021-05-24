@@ -6,12 +6,10 @@ import (
 	"github.com/egylinux/hr/api"
 	"github.com/egylinux/hr/employees"
 	"github.com/labstack/echo/v4"
-	"log"
-	"net/http"
-	"time"
-
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
+	"log"
+	"net/http"
 )
 
 
@@ -21,7 +19,8 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
+	ctx :=  context.Background()
+
 	err = client.Connect(ctx)
 	if err != nil {
 		log.Fatal(err)
@@ -30,22 +29,9 @@ func main() {
 	// get collection as ref
 	collection := client.Database("hrdb").Collection("employees")
 
-	manager := employees.NewManager(collection)
-	/*
+	manager := employees.NewManager(collection,ctx)
 
-		_, err = manager.AddEmployee(employees.Employee{Id: 11, Employeename: "Ahmed Mahmoud"})
-		if err != nil {
-			fmt.Println("Error Inserting Employee ", err.Error())
-		}else {
-			fmt.Println("inserted successfully")
-		}
-
-
-
-	*/
-
-
-	router := api.NewRouter(manager)
+	router := api.NewRouter(manager,ctx)
 	router.Add(http.MethodGet, "/", home)
 	router.Logger.Fatal(router.Start(":1323"))
 
