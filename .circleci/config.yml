@@ -43,13 +43,13 @@ jobs:
 
   dockerimage:
     docker:
-      - image: circleci/cci-demo-docker-primary:0.0.1
+      - image: circleci/golang
         auth:
           username: gopython
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout
-      - setup_remote_docker:
+      - setup_remote_docker:go
           version: 19.03.13
       # build and push Docker image
       - run: |
