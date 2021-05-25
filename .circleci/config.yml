@@ -1,7 +1,5 @@
 # .circleci/config.yml
-
 version: 2.1
-
 jobs:
   # This build job just tests that the binary can build. If your project is a
   # library, not a binary, you don't need this build job. In other words, omit
@@ -22,8 +20,9 @@ jobs:
           key: go-mod-v4-{{ checksum "go.sum" }}
           paths:
             - "/go/pkg/mod"
-    executor:
-      - go build
+      - run:
+          name: build
+          command: go build
 
   lint:
     docker:
