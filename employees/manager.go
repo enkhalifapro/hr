@@ -47,7 +47,7 @@ func (m *Manager) AddEmployee(emp Employee) (bool, error) {
 
 	_, err := m.connector.InsertOne(m.ctx, emp)
 	if err != nil {
-		return false,err
+		return false, err
 	}
 	return true, nil
 }
@@ -72,7 +72,7 @@ func (m *Manager) Delete(ctx context.Context, filter interface{}, opts ...*optio
 func (m *Manager) Find(filter interface{}) ([]*Employee, error) {
 
 	collec, err := m.connector.Find(m.ctx, filter)
-	if err!=nil {
+	if err != nil {
 		fmt.Println(err.Error())
 		return nil, err
 	}
@@ -82,16 +82,12 @@ func (m *Manager) Find(filter interface{}) ([]*Employee, error) {
 		var elem Employee
 		err := collec.Decode(&elem)
 		if err != nil {
-			return nil, err
+			return results, err
 		}
 
 		results = append(results, &elem)
 	}
 
-	if err != nil {
+	return results, nil
 
-		return results, nil
-	} else {
-		return results, err
-	}
 }
