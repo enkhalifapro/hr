@@ -35,7 +35,10 @@ func main() {
 	router.Add(http.MethodGet, "/", home)
 	router.Logger.Fatal(router.Start(":1323"))
 
-	defer client.Disconnect(ctx)
+	 if err=client.Disconnect(ctx);err != nil{
+	 	fmt.Println(err.Error())
+	 }
+
 }
 // Handler
 func home(c echo.Context) error {

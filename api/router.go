@@ -73,7 +73,9 @@ func (e *EmployeeRouter) Search(c echo.Context) error {
 
 	id := c.Param("id")
 	intid, _ := strconv.Atoi(id)
-	filter := bson.D{{"id", intid}}
+	const Idfield = "id"
+	//nolint
+	filter := bson.D{{Idfield, intid}}
 	employees, err := e.manager.Find(filter)
 
 	if err != nil {
@@ -97,7 +99,9 @@ func (e *EmployeeRouter) Delete(c echo.Context) error {
 	id := c.Param("id")
 	intid, _ := strconv.Atoi(id)
 	fmt.Printf("id: %v\n", intid)
-	filter := bson.D{{"id", intid}}
+	const Id = "id"
+	//nolint
+	filter := bson.D{{Id, intid}}
 	res, err := e.manager.Delete(e.ctx, filter)
 
 	if err != nil {
