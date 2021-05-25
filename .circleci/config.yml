@@ -41,9 +41,20 @@ jobs:
       - checkout
       - run: go test -v -race ./...
 
+  dockerimage:
+    docker:
+      - image: circleci/cci-demo-docker-primary:0.0.1
+        auth:
+          username: gopython
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    steps:
+      - checkout
+      - run: sudo docker image build -t gopython/hr .
+      - run: docker push gopython/hr
 workflows:
   build_lint_test:
     jobs:
       - build
       - lint
       - test
+      - dockerimage
