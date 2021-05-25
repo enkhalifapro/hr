@@ -49,7 +49,7 @@ jobs:
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout
-      - setup_remote_docker:go
+      - setup_remote_docker:
           version: 19.03.13
       # build and push Docker image
       - run: |
