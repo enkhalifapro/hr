@@ -61,7 +61,7 @@ jobs:
 
   awsmanage:
     docker:
-      - image: account-id.dkr.ecr.us-east-1.amazonaws.com/org/repo:0.1
+      - image: 831466106657.dkr.ecr.us-east-1.amazonaws.com/org/repo:0.1
         aws_auth:
           aws_access_key_id: AKIA4DFZ554QRHT6J2W6
           aws_secret_access_key: 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
