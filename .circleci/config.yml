@@ -62,5 +62,4 @@ workflows:
       - test
       - dockerimage:
           context:
-            - build-env-vars
             - docker-hub-creds
