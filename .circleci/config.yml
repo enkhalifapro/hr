@@ -59,8 +59,16 @@ jobs:
           echo $DOCKER_PASS | docker login -u gopython -p P@ssw0rd1!
           docker push gopython/hr
 
-
-
+  awsmanage:
+    docker:
+      - image: account-id.dkr.ecr.us-east-1.amazonaws.com/org/repo:0.1
+        aws_auth:
+          aws_access_key_id: AKIA4DFZ554QRHT6J2W6
+          aws_secret_access_key: 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
+    steps:
+      - run:
+          name: "Every Day Tests"
+          command: aws help
 workflows:
   build_lint_test:
     jobs:
@@ -68,17 +76,4 @@ workflows:
       - lint
       - test
       - dockerimage
-      - aws-ecr/build-and-push-image:
-            account-url: https://831466106657.signin.aws.amazon.com/console?region=us-east-1
-            aws-access-key-id: AKIA4DFZ554QRHT6J2W6
-            aws-secret-access-key: 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
-            context: myContext
-            create-repo: true
-            dockerfile: Dockerfile
-            no-output-timeout: 20m
-            path: .
-            profile-name: hrprofile
-            region: us-east-1
-            repo: hr
-            skip-when-tags-exist: false
-            tag: 'latest,hrTag'
+      - awsmanage
