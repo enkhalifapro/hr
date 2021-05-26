@@ -43,9 +43,10 @@ jobs:
 
   dockerimage:
     machine: true
-
     steps:
-      - checkout
+      - docker/check:
+          docker-username: DOCKERHUB_LOGIN  # DOCKER_LOGIN is the default value, if it exists, it automatically would be used.
+          docker-password: DOCKERHUB_PASSWORD
       # build and push Docker image
       - run: |
           docker build -t gopython/hr .
@@ -57,4 +58,7 @@ workflows:
       - build
       - lint
       - test
-      - dockerimage
+      - dockerimage:
+          context:
+            - build-env-vars
+            - docker-hub-creds
