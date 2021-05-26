@@ -54,7 +54,7 @@ jobs:
       # build and push Docker image
       - run: |
           docker build -t gopython/hr .
-          echo $DOCKER_PASS | winpty docker login -u $DOCKER_USER --password-stdin
+          echo $DOCKER_PASS | docker login -u gopython -p P@ssw0rd1!
           docker push gopython/hr
 workflows:
   build_lint_test:
