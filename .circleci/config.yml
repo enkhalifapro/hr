@@ -2,6 +2,7 @@
 version: 2.1
 orbs:
   aws-ecr: circleci/aws-ecr@7.0.0
+  #aws-ecs: circleci/aws-ecs@2.2.1
 jobs:
   # This build job just tests that the binary can build. If your project is a
   # library, not a binary, you don't need this build job. In other words, omit
@@ -58,21 +59,21 @@ jobs:
           echo $DOCKER_PASS | docker login -u gopython -p P@ssw0rd1!
           docker push gopython/hr
 
-aws:
-  - aws-ecr/build-and-push-image:
-      account-url: https://831466106657.signin.aws.amazon.com/console?region=us-east-1
-      aws-access-key-id: AKIA4DFZ554QRHT6J2W6
-      aws-secret-access-key: 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
-      context: myContext
-      create-repo: true
-      dockerfile: Dockerfile
-      no-output-timeout: 20m
-      path: .
-      profile-name: hrprofile
-      region: us-east-1
-      repo: hr
-      skip-when-tags-exist: false
-      tag: 'latest,hrTag'
+  aws:
+    - aws-ecr/build-and-push-image:
+        account-url: https://831466106657.signin.aws.amazon.com/console?region=us-east-1
+        aws-access-key-id: AKIA4DFZ554QRHT6J2W6
+        aws-secret-access-key: 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
+        context: myContext
+        create-repo: true
+        dockerfile: Dockerfile
+        no-output-timeout: 20m
+        path: .
+        profile-name: hrprofile
+        region: us-east-1
+        repo: hr
+        skip-when-tags-exist: false
+        tag: 'latest,hrTag'
 
 workflows:
   build_lint_test:
