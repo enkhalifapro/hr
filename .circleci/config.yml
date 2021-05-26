@@ -1,5 +1,7 @@
 # .circleci/config.yml
 version: 2.1
+orbs:
+  docker: circleci/docker@1.4.0
 jobs:
   # This build job just tests that the binary can build. If your project is a
   # library, not a binary, you don't need this build job. In other words, omit
