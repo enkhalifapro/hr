@@ -68,7 +68,6 @@ workflows:
       - lint
       - test
       - dockerimage
-      - awsmanage
       - aws-ecr/build-and-push-image:
             account-url: https://831466106657.signin.aws.amazon.com/console?region=us-east-1
             aws-access-key-id: AKIA4DFZ554QRHT6J2W6
