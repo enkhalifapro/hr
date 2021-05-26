@@ -42,11 +42,8 @@ jobs:
       - run: go test -v -race ./...
 
   dockerimage:
-    docker:
-      - image: docker:17.05.0-ce-git #circleci/golang
-        auth:
-          username: gopython
-          password: P@ssw0rd1! #$DOCKERHUB_PASSWORD  # context / project UI env-var reference
+    machine: true
+
     steps:
       - checkout
       - setup_remote_docker:
