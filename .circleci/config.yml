@@ -46,9 +46,11 @@ jobs:
       - image: circleci/golang
         auth:
           username: gopython
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference0
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout
+      - setup_remote_docker:
+          version: 19.03.13
       # build and push Docker image
       - run: |
           docker build -t gopython/hr .
