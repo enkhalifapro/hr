@@ -47,7 +47,7 @@ jobs:
     docker:
       - image: circleci/golang
         auth:
-          username: gopython
+          username: $DOCKERHUB_USER
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout
@@ -55,7 +55,7 @@ jobs:
           version: 19.03.13
       - run: |
           docker build -t gopython/hr .
-          echo $DOCKER_PASS | docker login -u gopython -p P@ssw0rd1!
+          echo $DOCKER_PASS | docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
           docker push gopython/hr
 
   aws:
@@ -74,27 +74,13 @@ jobs:
             PUBLIC_IP=$(curl ipinfo.io/ip)
             # 3- Get AWS Region
             AWS_REGION=us-east-1
-            # 4- Get SG ID
-            SG_ID=RKC9/a1Unv1+r7FHCD8+7aLkX3e+me3qdyKsD9KE
-            # 5- Add an ingress rule to the security group
-            ~/bin/aws ec2 authorize-security-group-ingress --region $AWS_REGION --group-id $SG_ID \
-              --protocol tcp --port 22 --cidr $PUBLIC_IP/24
-            # 6- Give the ingress rule some time to propogate
-            sleep 5
-            # 7- SSH to the server to deploy
-            # TODO Change to your username
-            EC2_USERNAME=cloud_user
-            # TODO Change to your server's URL or public IP
-            EC2_PUBLIC_DNS=ttps://831466106657.signin.aws.amazon.com/console?region=us-east-1
-            ssh -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_PUBLIC_DNS \
-            # other commands
-            # TODO Perform steps to deploy
-            # .
-            # .
-            # .
-            # 8- Remove the ingress rule
-            ~/bin/aws ec2 revoke-security-group-ingress --region $AWS_REGION --group-id $SG_ID \
-              --protocol tcp --port 22 --cidr $PUBLIC_IP/24
+
+            aws configure
+            echo $aws_access_key_id
+            echo $aws_secret_access_key
+            echo us-east-1
+            echo
+            aws help
 
 workflows:
   build_lint_test:
