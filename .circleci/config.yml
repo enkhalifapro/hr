@@ -60,6 +60,4 @@ workflows:
       - build
       - lint
       - test
-      - dockerimage:
-          context:
-            - docker-hub-creds
+      - dockerimage
