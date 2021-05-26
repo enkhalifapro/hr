@@ -1,7 +1,5 @@
 # .circleci/config.yml
 version: 2.1
-orbs:
-  docker: circleci/docker@1.4.0
 jobs:
   # This build job just tests that the binary can build. If your project is a
   # library, not a binary, you don't need this build job. In other words, omit
@@ -44,7 +42,11 @@ jobs:
       - run: go test -v -race ./...
 
   dockerimage:
-    machine: true
+    docker:
+      - image: docker:17.05.0-ce-git #circleci/golang
+        auth:
+          username: gopython
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference0
     steps:
       - docker/check:
           docker-username: DOCKERHUB_LOGIN  # DOCKER_LOGIN is the default value, if it exists, it automatically would be used.
