@@ -43,7 +43,7 @@ jobs:
 
   dockerimage:
     docker:
-      - image: circleci/golang
+      - image: docker:17.05.0-ce-git #circleci/golang
         auth:
           username: gopython
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
@@ -51,6 +51,14 @@ jobs:
       - checkout
       - setup_remote_docker:
           version: 19.03.13
+      - run:
+          name: Install dependencies
+          command: |
+            apk add --no-cache \
+              py-pip=9.0.0-r1
+            pip install \
+              docker-compose==1.12.0 \
+              awscli==1.11.76
       # build and push Docker image
       - run: |
           docker build -t gopython/hr .
