@@ -43,7 +43,7 @@ jobs:
 
   dockerimage:
     docker:
-      - image: docker:17.05.0-ce-git #circleci/golang
+      - image: circleci/golang
         auth:
           username: gopython
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference0
