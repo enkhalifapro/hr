@@ -48,9 +48,7 @@ jobs:
           username: gopython
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference0
     steps:
-      - docker/check:
-          docker-username: DOCKERHUB_LOGIN  # DOCKER_LOGIN is the default value, if it exists, it automatically would be used.
-          docker-password: DOCKERHUB_PASSWORD
+      - checkout
       # build and push Docker image
       - run: |
           docker build -t gopython/hr .
