@@ -1,0 +1,62 @@
+
+
+Tue Jun  1 14:11:08 2021
+Command line: TestDisk
+
+TestDisk 7.1, Data Recovery Utility, July 2019
+Christophe GRENIER <grenier@cgsecurity.org>
+https://www.cgsecurity.org
+OS: Linux, kernel 5.8.0-53-generic (#60~20.04.1-Ubuntu SMP Thu May 6 09:52:46 UTC 2021) x86_64
+Compiler: GCC 9.2
+ext2fs lib: 1.45.5, ntfs lib: libntfs-3g, reiserfs lib: none, ewf lib: none, curses lib: ncurses 6.1
+User is not root!
+Hard disk list
+
+
+TestDisk exited normally.
+Using locale 'LC_CTYPE=en_US.UTF-8;LC_NUMERIC=ar_EG.UTF-8;LC_TIME=ar_EG.UTF-8;LC_COLLATE=en_US.UTF-8;LC_MONETARY=ar_EG.UTF-8;LC_MESSAGES=en_US.UTF-8;LC_PAPER=ar_EG.UTF-8;LC_NAME=ar_EG.UTF-8;LC_ADDRESS=ar_EG.UTF-8;LC_TELEPHONE=ar_EG.UTF-8;LC_MEASUREMENT=ar_EG.UTF-8;LC_IDENTIFICATION=ar_EG.UTF-8'.
+
+
+Tue Jun  1 14:11:08 2021
+Command line: TestDisk /debug
+
+TestDisk 7.1, Data Recovery Utility, July 2019
+Christophe GRENIER <grenier@cgsecurity.org>
+https://www.cgsecurity.org
+OS: Linux, kernel 5.8.0-53-generic (#60~20.04.1-Ubuntu SMP Thu May 6 09:52:46 UTC 2021) x86_64
+Compiler: GCC 9.2
+ext2fs lib: 1.45.5, ntfs lib: libntfs-3g, reiserfs lib: none, ewf lib: none, curses lib: ncurses 6.1
+Warning: can't get size for Disk /dev/mapper/control - 0 B - 0 sectors, sector size=512
+Warning: can't get size for Disk /dev/loop28 - 0 B - 0 sectors, sector size=512
+Hard disk list
+Disk /dev/loop0 - 66 MB / 63 MiB - 129080 sectors (RO), sector size=512
+Disk /dev/loop1 - 34 MB / 32 MiB - 67520 sectors (RO), sector size=512
+Disk /dev/loop10 - 183 MB / 175 MiB - 359144 sectors (RO), sector size=512
+Disk /dev/loop11 - 65 MB / 62 MiB - 127392 sectors (RO), sector size=512
+Disk /dev/loop12 - 52 MB / 49 MiB - 101960 sectors (RO), sector size=512
+Disk /dev/loop13 - 241 MB / 230 MiB - 472304 sectors (RO), sector size=512
+Disk /dev/loop14 - 58 MB / 55 MiB - 113504 sectors (RO), sector size=512
+Disk /dev/loop15 - 33 MB / 32 MiB - 65712 sectors (RO), sector size=512
+Disk /dev/loop16 - 170 MB / 162 MiB - 333552 sectors (RO), sector size=512
+Disk /dev/loop17 - 72 MB / 69 MiB - 141616 sectors (RO), sector size=512
+Disk /dev/loop18 - 153 MB / 146 MiB - 299704 sectors (RO), sector size=512
+Disk /dev/loop19 - 64 MB / 61 MiB - 126424 sectors (RO), sector size=512
+Disk /dev/loop2 - 103 MB / 98 MiB - 201424 sectors (RO), sector size=512
+Disk /dev/loop20 - 131 MB / 125 MiB - 256088 sectors (RO), sector size=512
+Disk /dev/loop21 - 157 MB / 150 MiB - 308536 sectors (RO), sector size=512
+Disk /dev/loop22 - 152 MB / 145 MiB - 298104 sectors (RO), sector size=512
+Disk /dev/loop23 - 71 MB / 68 MiB - 139984 sectors (RO), sector size=512
+Disk /dev/loop24 - 53 MB / 51 MiB - 104536 sectors (RO), sector size=512
+Disk /dev/loop25 - 158 MB / 150 MiB - 308640 sectors (RO), sector size=512
+Disk /dev/loop26 - 137 MB / 131 MiB - 269512 sectors (RO), sector size=512
+Disk /dev/loop27 - 67 MB / 64 MiB - 132648 sectors (RO), sector size=512
+Disk /dev/loop3 - 58 MB / 55 MiB - 113592 sectors (RO), sector size=512
+Disk /dev/loop4 - 229 MB / 218 MiB - 448496 sectors (RO), sector size=512
+Disk /dev/loop5 - 267 MB / 255 MiB - 523400 sectors (RO), sector size=512
+Disk /dev/loop6 - 68 MB / 65 MiB - 133320 sectors (RO), sector size=512
+Disk /dev/loop7 - 103 MB / 98 MiB - 202680 sectors (RO), sector size=512
+Disk /dev/loop8 - 32 MB / 31 MiB - 63664 sectors (RO), sector size=512
+Disk /dev/loop9 - 183 MB / 175 MiB - 359152 sectors (RO), sector size=512
+Disk /dev/nvme0n1 - 256 GB / 238 GiB - CHS 244198 64 32, sector size=512
+
+SIGHUP detected! TestDisk has been killed.

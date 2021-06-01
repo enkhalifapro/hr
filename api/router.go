@@ -2,7 +2,13 @@ package api
 
 import (
 	"context"
+	"encoding/json"
+	"errors"
 	"fmt"
+	"github.com/aws/aws-sdk-go-v2/config"
+	"github.com/aws/aws-sdk-go-v2/service/sqs"
+	  "github.com/egylinux/hr/aws"
+
 	"github.com/egylinux/hr/employees"
 	"github.com/labstack/echo/v4"
 	"go.mongodb.org/mongo-driver/bson"
@@ -47,6 +53,30 @@ func (e *EmployeeRouter) AddEmployee(c echo.Context) error {
 		return c.String(http.StatusOK, "Error while saving , "+err.Error())
 	}
 
+	cfg, err := config.LoadDefaultConfig(context.TODO())
+	if err != nil {
+		fmt.Println(errors.New("Configuration error, " + err.Error()))
+		return c.String(http.StatusBadRequest, "Saved successfully\n but error loading aws configurations , "+err.Error())
+	}
+
+	awsClient := sqs.NewFromConfig(cfg)
+	awsManager := awshelper.NewSQS(awsClient)
+	q := "messages"
+	_, err = awsManager.GetQueueID(q)
+	if err != nil {
+		_, err = awsManager.CreateNewQueue(&q)
+		if err != nil {
+			return c.String(http.StatusBadRequest, "Saved successfully\n but error getting employees queue , "+err.Error())
+		}
+	}
+	employeeText, err := json.Marshal(emp)
+	if err != nil {
+		return c.String(http.StatusBadRequest, "Saved successfully\n but error while converting employee file to json , "+err.Error())
+	}
+	_, err = awsManager.SendMessage(&q, string(employeeText))
+	if err != nil {
+		return c.String(http.StatusBadRequest, "Saved successfully\n but error while sending employee message to que , "+err.Error())
+	}
 	return c.String(http.StatusOK, "Saved Successfully")
 }
 func (e *EmployeeRouter) GetAll(c echo.Context) error {
@@ -81,8 +111,8 @@ func (e *EmployeeRouter) Search(c echo.Context) error {
 	if err != nil {
 		return c.String(http.StatusOK, "Error while reading data , "+err.Error())
 	}
-	if employees==nil {
-		return c.String(http.StatusOK,"Employee Not Found")
+	if employees == nil {
+		return c.String(http.StatusOK, "Employee Not Found")
 	}
 
 	name := ""
